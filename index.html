@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Two Little Problems</title>
+  <link rel="stylesheet" href="./reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+  <!-- <link rel="stylesheet" href="dist/theme/black.css" id="theme"> -->
+  <link rel="stylesheet" href="./custom-white2.css" id="theme">
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="./reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="footer-left" id="footer1" style="display: none;">
+      Alex Y. Chen<br>
+      cyuran@wustl.edu
+    </div>
+    <div class="footer-right" id="footer2" style="display: none;">
+      Purdue 2024
+    </div>
+    <div class="slides">
+      <!-- Start the slides here, each slide is in its own <section> -->
+      <section>
+        <div class="title-page" style="font-size: 0.8em;">
+          <h2 style="font-size: 3.3em; padding-top: 0vh">
+            Two Little (Semi)Analytic Problems in Neutron Star Magnetospheres
+          </h2>
+          <div class="content">
+            <p class="author"><br>
+            Alexander Y. Chen<br>
+              <!-- <span>WashU</span></p> -->
+            <div style="line-height: 70%;">
+              <br>
+            </div>
+            <p class="coauthor">
+             Takuya Okawa, Dominic Bernardi, Yajie Yuan</p>
+            <div style="line-height: 30%;">
+              <br>
+            </div>
+            <p class="institute">Fifth Purdue Workshop</p>
+            <!-- <div style="line-height: 60%">
+                 <br>
+                 </div> -->
+            <p class="date">May 6, 2024</p>
+          </div>
+        </div>
+        <img src="figures/washu.png"
+             width="30%"
+             style="position: absolute; right: 30px; bottom: 0px;">
+        <img src="figures/Logo_MCSS_nobackground.png"
+             width="23%"
+             style="position: absolute; left: 0px; bottom: 0px;">
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Take-home Messages</h2>
+          <div class="content">
+            <ul>
+              <li>We constructed a minimal kinetic model of pulsar polar cap
+              pair cascade that captures the limit-cycle behavior.
+              (arXiv:2402.19436)</li>
+              <br>
+              <li>We developed a non-plane-wave description of long-wavelength Alfvén
+              waves in the neutron star magnetosphere, and used it to compute
+              their nonlinear conversion to fms waves. (arXiv:2404.06431, also
+              see arXiv:2405.02199)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pulsar Polar Cap Discharge</h2>
+          <div class="content">
+            <div class="row">
+              <div class="column" style="width: 35%;">
+                <img src="figures/timokhin-pair-cascade.png" width="90%">
+                <div style="font-size: 70%;">(Timokhin & Harding 2015)</div>
+              </div>
+              <div class="column" style="width: 60%; padding-left: 3vw;">
+                <ul>
+                  <li>Direct PIC simulations of this process have shown that pair
+                    production proceeds in bursts.</li>
+                  <li>Electric field is screened by the freshly produced pairs, but
+                  as pairs outflow, the electric field is induced again.</li>
+                  <li>The whole process approaches a limit cycle.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Goal</h2>
+          <div class="content">
+            <p>We want to write down a minimal kinetic model that can reproduce
+            the limit-cycle behavior of pulsar polar cap $e^\pm$ cascade.</p>
+            <br>
+            <div class="fragment row">
+              <div class="column" style="width: 70%;">
+                <p>A theoretical model for the polar cap $e^\pm$ discharge may help us better
+                understand pulsar radio emission (e.g. Philippov et al 2020). It
+                may also help constrain the production of axion-like particles
+                from the $\mathbf{E}\cdot\mathbf{B}$ oscillations.</p>
+              </div>
+              <div class="column fragment" style="width: 30%;">
+                <img src="figures/Physics_Okawa_T_P1002296.jpg" width="90%">
+                <div style="font-size: 70%;">Takuya Okawa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pair Production Limit Cycle</h2>
+          <div class="content">
+            <p>A few ingredients are needed for the pair production cycle:</p>
+            <ul style="padding: 3vh;">
+              <li class="fragment">Advection of pairs from the gap</li>
+              <li class="fragment">Induction of $E_\parallel$ due to $\nabla\times\mathbf{B}$</li>
+              <li class="fragment">Pair production that responds to $E_\parallel$</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Model Results</h2>
+          <div class="content">
+            <img src="figures/gap_E.png" width="80%">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Kinetic Model</h2>
+          <div class="content">
+            <p>We start with the 1D Vlasov system:</p>
+            $$
+            \frac{\partial E}{\partial t} = c(\nabla\times \mathbf{B})_{\parallel} - 4\pi j = 4\pi(j_0 - j)
+            $$
+            $$
+            \frac{\partial f_\pm}{\partial t} + v \frac{\partial f_\pm}{\partial x} + q_{\pm}E \frac{\partial f_\pm}{\partial p} = S_{\pm}
+            $$
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Kinetic Model</h2>
+          <div class="content">
+            <p>For the Vlasov equation, we assume a length scale $L$ of the gap
+            region and pairs flow out at near speed of light, replacing $\partial/\partial
+            x$ with $1/L$ and $v$ with $c$.</p>
+            <div class="r-stack">
+              <div class="fragment fade-out">
+              $$
+              \frac{\partial f_\pm}{\partial t} + v \frac{\partial f_\pm}{\partial x} + q_{\pm}E \frac{\partial f_\pm}{\partial p} = S_{\pm}
+              $$
+              </div>
+              <div class="fragment">
+              $$
+              \frac{\partial f_\pm}{\partial t} + \frac{c}{L}f_\pm + q_{\pm}E \frac{\partial f_\pm}{\partial p} = S_{\pm}
+              $$
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Kinetic Model</h2>
+          <div class="content">
+            <p>The electric current can be directly computed from the
+            distribution function. Its time derivative is:</p>
+            $$
+            \begin{split}
+            \frac{\partial j}{\partial t} &= \sum_{s=\pm} q_s\int v\frac{\partial f_s}{\partial t}\,dp \\
+            &= -\frac{c}{L}j + \sum_{s=\pm}\frac{q_s^2 n_s E}{m}\left<\frac{1}{\gamma_s^3}\right> - q_s\int v S_s\,dp
+            \end{split}
+            $$
+            <p class="fragment">We assume both electrons and positrons are producing secondary
+            pairs. The integral of the source term then becomes zero.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Kinetic Model</h2>
+          <div class="content">
+            <p>Combining the $\partial j/\partial t$ equation and the $\partial
+            E/\partial t$ equation, we get:</p>
+            $$
+    \frac{\partial^{2}E}{\partial t^{2}} + \frac{c}{L}\frac{\partial E}{\partial t} + \sum_{s=\pm}\frac{4\pi n_s q_s^2}{m}\left<\frac{1}{\gamma^{3}_{s}}\right>E = \frac{4\pi c j_0}{L}.
+            $$
+            <p class="fragment">This is essentially a driven and damped oscillator with variable
+            natural frequency $\bar{\omega}^2 = \omega_p^2\langle 1/\gamma^3\rangle$.</p>
+            <p class="fragment" style="padding-top: 2vh;">A particular solution
+            exists when $\bar{\omega} \approx 0$: $E\propto 4\pi j_0 t$. This solution
+            describes the electric field induction when plasma density is low.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Kinetic Model</h2>
+          <div class="content">
+            <p>In order to close the equations, we need to evolve both $n_\pm$
+            and $\langle1/\gamma^3\rangle$:</p>
+            <div class="fragment">
+            $$
+            \frac{\partial n_{\pm}}{\partial t} = -\frac{c}{L}n_{\pm} + \int S_{\pm}\,dp.
+            $$
+            </div>
+            <div class="fragment">
+            $$
+            \frac{\partial\langle p_{\pm}\rangle}{\partial t} = -\frac{1}{n_{\pm}}\int S_{\pm}\langle p_{\pm}\rangle\,dp + q_{\pm}E
+            $$
+            </div>
+            <p class="fragment">We use $1/\langle \gamma\rangle^3 \approx 1/\langle p\rangle^3$ as a crude approximation for
+            $\langle1/\gamma^3\rangle$.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pair Production Model</h2>
+          <div class="content">
+            <p>We experimented a series of pair production models to see what is needed to have
+            a pair production limit cycle:</p>
+            <ul>
+              <li>Constant pair production: $S = g$</li>
+              <li>Proportional to plasma density: $S = g\sum_s n_s$</li>
+              <li>Proportional to average momentum: $S = g\sum_s |\langle p_s\rangle|$</li>
+              <li>Proportional to local electric field: $S = g|E|$</li>
+              <li>Proportional to electric field and density: $S = g|E|\sum_{s}n_{s}$</li>
+              <li>Proportional to average momentum and density: $S = g\sum_{s}|\langle p_s\rangle|n_{s}$</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pair Production Model</h2>
+          <div class="content">
+            <p>Only the model where pair production rate is proportional to both average momentum
+            and plasma density, $S = g\sum_{s}|\langle p_s\rangle|n_{s}$, exhibits a limit cycle.</p>
+            <br>
+            <p class="fragment">
+              This model is also the most physically motivated. The energy loss
+              rate of a single particle due to curvature radiation scales as
+              $P_\mathrm{CR} \sim
+              \gamma^4$, while curvature photon energy $\epsilon_\mathrm{CR}
+              \sim \gamma^3$. The number of pairs produced scales with $n\gamma$.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Model Results</h2>
+          <div class="content">
+            <div class="r-stack">
+              <img class="fragment fade-out" src="figures/gap_E.png" width="80%">
+              <img class="fragment" src="figures/J.png" width="80%">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Parameter Dependence</h2>
+          <div class="content">
+            <p>There are only 3 parameters in this model: the magnetospheric
+            current $j_0$, the escape length scale $L$, and pair production
+            parameter $g$.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Parameter Dependence</h2>
+          <div class="content">
+            <img src="figures/parameters.png">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Parameter Dependence</h2>
+          <div class="content">
+            <div class="row">
+              <div class="column" style="width: 40;">
+                <img src="figures/spectra.png" width="80%">
+              </div>
+              <div class="column" style="width: 60;">
+                <p>The pair production parameter $g$ also determines the upper limit of
+                  the power spectrum.</p>
+                <br>
+                <p>The three panels correspond to increasing $g$.</p>
+                <br>
+                <p>The spectral index is similar for all cases, and its value is
+                compatible with the observed pulsar radio emission spectra
+                $\omega^{-1.4\pm 1.0}$ (Bates et al. 2013).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Next Steps</h2>
+          <div class="content">
+            <ul>
+              <li>Examine better ways to approximate $\langle 1/\gamma^3\rangle$</li>
+              <li>Develop better pair production source functions (e.g. with energy threshold)</li>
+              <li>Compare with simulations (shoutout to Dingyi Ye and his poster on
+                Vlasov simulations of this process)</li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén waves</h2>
+          <div class="content fragment">
+            <ul>
+              <li>Derive a semi-analytic solution for Alfvén waves propagating in dipole magnetic field</li>
+              <br>
+              <li>Understand the nonlinear wave conversion process using a perturbative expansion</li>
+              <br>
+              <li>Extend the theory to a rotating magnetosphere</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Introduce dipole coordinates:</p>
+            $$
+            q = \frac{\cos\theta}{r^{2}},\quad p = \frac{r}{\sin^{2}\theta},\quad \phi = \phi,
+            $$
+            <p class="fragment">$q$ varies along a specific field line, and $p$
+            labels different field lines. $\phi$ is just the azimuthal angle. We
+            take the axisymmetric limit where $\partial_\phi = 0$</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Force-free equations:</p>
+            $$
+            \begin{split}
+            \frac{\partial \mathbf{E}}{\partial t} &= c(\nabla\times \mathbf{B}) - 4\pi\mathbf{j} \\
+            \frac{\partial \mathbf{B}}{\partial t} &= -c(\nabla\times \mathbf{E}) \\
+            \mathbf{j} &= \frac{c}{4\pi}\frac{\mathbf{B}\cdot \nabla\times \mathbf{B} - \mathbf{E}\cdot \nabla\times \mathbf{E}}{B^{2}}\mathbf{B} \\
+            &\quad + \frac{c}{4\pi}\nabla\cdot \mathbf{E}\frac{\mathbf{E}\times \mathbf{B}}{B^{2}}.
+            \end{split}
+            $$
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Expand the electric and magnetic fields in a perturbative expansion:</p>
+            $$
+            \begin{split}
+            \mathbf{B} &= \mathbf{B}^{(0)} + \mathbf{B}^{(1)} + \mathbf{B}^{(2)} + \dots \\
+            \mathbf{E} &= \mathbf{E}^{(0)} + \mathbf{E}^{(1)} + \mathbf{E}^{(2)} + \dots \\
+            \end{split}
+            $$
+            <div class="fragment">
+              <p>To first order, the force-free current is:</p>
+              $$
+              \mathbf{j}^{(1)} = \frac{c}{4\pi}\frac{\mathbf{B}^{(0)}\cdot \nabla\times \mathbf{B}^{(1)}}{B_{0}^{2}}\mathbf{B}^{(0)}.
+              $$
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>We seek an Alfvén wave solution of the following form:</p>
+            $$
+            \mathbf{B}^{(1)} = r^{-3/2}e^{-i\omega t}f(p, q)\hat{\boldsymbol{\phi}},
+            $$
+            <p>The goal is to determine the functional form of the unknown function $f$.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Equations in dipole coordinates are somewhat complicated:</p>
+            $$
+            \begin{split}
+            \frac{\partial\mathbf{E}^{(1)}}{\partial t} &= c\hat{\mathbf{p}}\left[-\frac{\delta}{r^{3}}\frac{\partial B_{\phi}^{(1)}}{\partial q} + \frac{3\cos\theta}{r\delta}B_{\phi}^{(1)}\right] \\
+            \frac{\partial\mathbf{B}^{(1)}}{\partial t} &= -c\hat{\boldsymbol{\phi}}\left[\frac{\delta}{r^{3}}\frac{\partial E_{p}^{(1)}}{\partial q} - \frac{6\cos\theta}{r\delta^{3}}(1 + \cos^{2}\theta)E_{p}^{(1)}\right],
+            \end{split}
+            $$
+            <p>where $\delta = \sqrt{1 + 3\cos^2\theta}$.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section>
+           <div class="content-page">
+           <h2>Alfvén Wave Solution</h2>
+           <div class="content">
+           <p>Plugging in the Alfvén wave ansatz, we can find the differential equation for $f$:</p>
+           $$
+           \partial_{q}(r^{-3}\partial_{q} f) = -\left(\frac{\omega}{c}\right)^{2}\frac{r^{6}}{\delta^{2}}f.
+           $$
+           <p>where $\omega$ is the wave frequency. The equation has no
+           $\partial_p$, meaning that waves on adjacent field lines do not talk to each other.</p>
+           </div>
+           </div>
+           </section>
+      -->
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Specializing to a specific field line (constant $p$), we can rewrite the equation into a very simple form:</p>
+            $$
+            \frac{d}{d\mu}\left(\frac{1}{1 + 3\mu^{2}}\frac{df}{d\mu}\right) = -\kappa^{2}f,
+            $$
+            <p>where $\mu = \cos\theta$, and $\kappa = \omega p/c$.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>Compare with Dominic's results from full force-free simulations:</p>
+            <div class="img-container">
+              <img src= "figures/f-solution.png" style= "width: 50%;">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Alfvén Wave Solution</h2>
+          <div class="content">
+            <p>We can solve the wave propagation on a collection of field lines:</p>
+            <video controls="" style="width: 60%;">
+              <source src="./movies/alfven-2d-bphi-j-hires.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Second-order Current</h2>
+          <div class="content">
+            <p>If we only have one Alfvén wave at 1st order, then the 2nd order force-free current is:</p>
+            $$
+            \begin{split}
+            \mathbf{j}^{(2)} &= \frac{c}{4\pi}\left[\frac{\mathbf{B}^{(0)}\cdot\nabla\times \mathbf{B}^{(2)}}{B_{0}^{2}}\mathbf{B}^{(0)}\right. \\
+            &\quad + \frac{\mathbf{B}^{(0)}\cdot\nabla\times \mathbf{B}^{(1)}}{B_{0}^{2}}\mathbf{B}^{(1)} + \left.\nabla\cdot \mathbf{E}^{(1)}\frac{\mathbf{E}^{(1)}\times \mathbf{B}^{(0)}}{B_{0}^{2}}\right].
+            \end{split}
+            $$
+            <p>The second line is along the $\hat{\boldsymbol{\phi}}$ direction. For a plane wave
+            solution, $j_\phi = 0$. It is in general nonzero here due to geometric effect.</p>
+            <!-- <p>The first line is identical to the Alfvén wave current. Second line is along $\hat{\boldsymbol{\phi}}$
+                 direction. The two terms on the second line normally cancel in a constant background field, but not in this problem.</p> -->
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Second-order Current</h2>
+          <div class="content">
+            <p>Plugging in the Alfvén wave solution, it can be seen that there
+            are two components of $j_\phi^{(2)}$. One with $\omega = 0$, the
+            other with $\omega = 2\omega_A$.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Second-order Fast Waves</h2>
+          <div class="content">
+            <p>The $\phi$ current sources fast-magnetosonic waves at the 2nd order:</p>
+            $$
+            \begin{split}
+            \partial_t \mathbf{E}_{F}^{(2)} &= c(\nabla\times \mathbf{B}_{F}^{(2)}) - 4\pi \mathbf{j}_{\phi}^{(2)}, \\
+            \partial_t \mathbf{B}_{F}^{(2)} &= -c(\nabla \times \mathbf{B}_{F}^{(2)}).
+            \end{split}
+            $$
+            <!-- <p>This is formally identical to vacuum Maxwell equations. $j_\phi$ acts as an antenna that
+                 produces electromagnetic waves.</p> -->
+            <p class="fragment">
+              The $2\omega_A$ component sources an outgoing fms wave. The zero
+              frequency component may source a low frequency fms wave if the
+              primary Alfvén
+              wave bounces back and forth along the flux tube (see poster by <em>Dominic Bernardi</em>).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Conversion Efficiency</h2>
+          <div class="content">
+            <p>We can in principle find the vector potential in the far zone:</p>
+            $$
+            A_\phi^{(2)}(\mathbf{x}) = \frac{1}{c}\int j^{(2)}_{\phi}(\mathbf{x}')\frac{e^{ik|\mathbf{x} - \mathbf{x}'|}}{|\mathbf{x} - \mathbf{x}'|}\,d^{3}x' .
+            $$
+            <p>Then we can find the angular distribution and total radiation
+            power. This gives a concrete way of computing the conversion rate of
+            Alfvén waves into fast magnetosonic waves.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Conversion Efficiency</h2>
+          <div class="content">
+            <img src="figures/Lfrac-nonrotating.png" width="90%">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Rotating Magnetosphere</h2>
+          <div class="content">
+            <p>In a rotating magnetosphere, we perform a two-scale expansion in both $\delta B/B$ and $v_\phi / c$. In
+            the closed zone, the corrections to the background magnetic field is 2nd order in rotation:</p>
+            $$
+            \nabla\times \mathbf{B}^{(0),[2]} = 4\pi \mathbf{j}^{(0),[2]}.
+            $$
+            <p>This is because $j$ comes from $\rho_\mathrm{GJ}v_\phi$, which is a second order quantity.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Rotating Magnetosphere</h2>
+          <div class="content">
+            <p>We are interested in the force-free current to first order in both $\delta B/B$ and $v_\phi/c$:</p>
+            $$
+    \begin{split}
+      \mathbf{j}^{(1),[1]} &= \frac{c}{4\pi}\left[\frac{\mathbf{B}^{(0),[0]}\cdot \nabla\times \mathbf{B}^{(1),[1]}}{B_{0}^{2}}\mathbf{B}^{(0),[0]} \right. \\
+                          &\quad - \nabla\cdot \mathbf{E}^{(1),[0]}\frac{\mathbf{E}^{(0),[1]}\times \mathbf{B}^{(0),[0]}}{B_{0}^{2}} \\
+      &\quad - \left.\nabla\cdot \mathbf{E}^{(0),[1]}\frac{\mathbf{E}^{(1),[0]}\times \mathbf{B}^{(0),[0]}}{B_{0}^{2}}\right].
+    \end{split}
+            $$
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Rotating Magnetosphere</h2>
+          <div class="content">
+            <p>Very similar to the 2nd order current in the non-rotating case,
+            there is now $j_\phi$ at first order, which sources fast waves too:</p>
+            $$
+    \begin{split}
+    \partial_t \mathbf{B}_{F}^{(1),[1]} &= -c(\nabla \times \mathbf{E}_{F}^{(1),[1]}) \\
+    \partial_t \mathbf{E}_{F}^{(1),[1]} &= c(\nabla \times \mathbf{B}_{F}^{(1),[1]}) - 4\pi \mathbf{j}_{\phi}^{(1),[1]}.
+    \end{split}
+            $$
+            <p>The source term $j_\phi^{(1),[1]}$ scales as $O(\delta B/B_{0})O(v_{\phi}/c)$.
+            When $\delta B/B \ll v_\phi / c$, fast waves sourced this way has
+            higher amplitude. Otherwise, the non-rotating 2nd order effect will
+            win.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Rotating Magnetosphere</h2>
+          <div class="content">
+            <img src="figures/Lfrac-rotating.png" width="80%">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Take-home Messages</h2>
+          <div class="content">
+            <ul>
+              <li>We constructed a minimal kinetic model of pulsar polar cap
+              pair cascade that captures the limit-cycle behavior.
+              (arXiv:2402.19436)</li>
+              <br>
+              <li>We developed a non-plane-wave description of long-wavelength
+              Alfvén waves in the neutron star magnetosphere, and used it to
+              compute their nonlinear conversion to fms waves.
+              (arXiv:2404.06431, also arXiv:2405.02199)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <script src="js/head.min.js"></script>
+  <!-- <script>
+
+       head.js(
+       "vendor/jquery.min.js",
+       "vendor/three.js/build/three.min.js",
+       "vendor/three.js/examples/js/controls/OrbitControls.js",
+       /* "vendor/socket.io-client/dist/socket.io.js", */
+       "vendor/THREE.MeshLine.js",
+       /* "vendor/dat.gui.min.js",*/
+       "vendor/EventEmitter.js",
+       "js/samples.js",
+       );
+       </script> -->
+  <script src="./reveal.js/dist/reveal.js"></script>
+  <script src="./reveal.js/plugin/math/math.js"></script>
+  <script src="./reveal.js/plugin/notes/notes.js"></script>
+  <script src="./reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="./reveal.js/plugin/highlight/highlight.js"></script>
+  <script>
+
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        transition: "fade",
+        slideNumber: true,
+        history: true,
+        center: false,
+        width: "100%",
+        height: "100%",
+        disableLayout: false,
+        // minScale: 1,
+        // maxScale: 1,
+        margin: 0,
+        padding: 0,
+        hash: true,
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: { Macros: { RR: "{\\bf R}" } }
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+      });
+      Reveal.addEventListener("slidechanged", function(event) {
+        var foot1 = document.getElementById("footer1");
+        var foot2 = document.getElementById("footer2");
+
+        if (Reveal.getIndices().h === 0) {
+          foot1.style.display = "none";
+          foot2.style.display = "none";
+        } else {
+          foot1.style.display = "block";
+          foot2.style.display = "block";
+        }
+      });
+
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": { scale: 80, linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic:true } }
+    });
+</script>
+</body>
+</html>
